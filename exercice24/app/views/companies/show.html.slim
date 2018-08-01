@@ -1,0 +1,45 @@
+p#notice = notice
+h1.text-center.my-5
+  strong Company:
+  = @company.name
+.row
+  .col-md-3.mx-auto.border.rounded.p-5.mb-5
+    h3.mb-5 Add Employee:
+    = form_with(model: [@company, @employee], local: true) do |f|
+      = f.hidden_field :company_id, value: @company.id
+      .form-group.row
+        = f.label :first_name, class: 'col-md-4 col-form-label'
+        = f.text_field :first_name, class: 'col-md-8 form-control'
+      .form-group.row
+        = f.label :last_name, class: 'col-md-4 col-form-label'
+        = f.text_field :last_name, class: 'col-md-8 form-control'
+      .form-group.row
+        = f.label :email, class: 'col-md-4 col-form-label'
+        = f.text_field :email, class: 'col-md-8 form-control'
+      .form-group.row
+        = f.label :area_id, class: 'col-md-4 col-form-label'
+        = f.select :area_id, Area.pluck(:name, :id), class: 'col-md-8 form-control'
+      .form-group.row
+        = f.submit "Submit", class: 'col-md-12 btn btn-primary mt-4'
+.row
+  table.table.col-md-6.mx-auto.mb-5
+    thead.thead-dark
+      tr
+        th Firstname
+        th Lastname
+        th Email
+        th Area
+        th
+    tbody
+      - @company.employees.each do |employee|
+        tr
+          td = employee.first_name
+          td = employee.last_name
+          td = employee.email
+          td = employee.area_id
+          td = link_to 'Destroy', company_employee_path(@company, employee), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-warning float-right'
+.row
+  .col-md-3.mx-auto
+    .row.justify-content-between
+      = link_to 'Edit', edit_company_path(@company), class: 'col-md-4 btn btn-primary'
+      = link_to 'Back', companies_path, class: 'col-md-4 btn btn-primary'

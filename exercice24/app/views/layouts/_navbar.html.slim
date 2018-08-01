@@ -1,0 +1,12 @@
+.container
+  nav.navbar.navbar-expand-lg.navbar-fixed.navbar-dark.bg-dark
+    button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
+      span.navbar-toggler-icon
+    #navbarNavDropdown.navbar-collapse.collapse
+      ul.navbar-nav.ml-auto
+        li class=("#{'active' if current_page?(companies_path)}")
+          a.nav-link href=companies_path  Index
+        li class=("#{'active' if current_page?(new_company_path)}")
+          a.nav-link href=new_company_path  Add Company
+        li class=("#{'active' if current_page?(new_area_path)}")
+          a.nav-link href=new_area_path  Add Area

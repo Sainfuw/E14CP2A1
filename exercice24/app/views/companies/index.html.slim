@@ -1,0 +1,17 @@
+h1.text-center.my-5
+  strong Listing companies
+.row
+  table.table.table-hover.col-md-5.mx-auto.mt-5
+    thead.thead-dark
+      tr
+        th Name
+        th Employees
+        th
+        th
+    tbody
+      - @companies.each do |company|
+        tr
+          td.col-8 = link_to company.name, company
+          td.col-2 = company.employees.count
+          td.col-1 = link_to 'Edit', edit_company_path(company), class: 'btn btn-primary button-size float-right'
+          td.col-1 = link_to 'Destroy', company, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger button-size'
