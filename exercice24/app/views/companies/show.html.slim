@@ -2,7 +2,7 @@ p#notice = notice
 h1.text-center.my-5
   strong Company:
   = @company.name
-.row
+.row.no-gutters
   .col-md-3.mx-auto.border.rounded.p-5.mb-5
     h3.mb-5 Add Employee:
     = form_with(model: [@company, @employee], local: true) do |f|
@@ -20,7 +20,7 @@ h1.text-center.my-5
         = f.select :area_id, Area.pluck(:name, :id), class: 'col-md-8 form-control'
       .form-group.row
         = f.submit "Submit", class: 'col-md-12 btn btn-primary mt-4'
-.row
+.row.no-gutters
   table.table.col-md-6.mx-auto.mb-5
     thead.thead-dark
       tr
@@ -37,7 +37,7 @@ h1.text-center.my-5
           td = employee.email
           td = Area.find(employee.area_id).name
           td = link_to 'Destroy', company_employee_path(@company, employee), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-warning float-right'
-.row
+.row.no-gutters
   .col-md-3.mx-auto
     .row.justify-content-between
       = link_to 'Edit', edit_company_path(@company), class: 'col-md-4 btn btn-primary'
